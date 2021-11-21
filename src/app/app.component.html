@@ -1,2 +1,31 @@
+<div class="page-container">
+    <header>
+      <div>
+        <button mat-button class="menu-button" (click)="sidenav.toggle()">
+            <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+          </button>
+    
+        <a routerLink="/">
+          <span class="app-title">Bookstore</span>
+        </a>
+      </div>
 
-<router-outlet></router-outlet>
+      <span class="spacer"></span>
+        <a mat-button id="login-btn" routerLink="/login">Login</a>
+        <a mat-button id="register-btn" routerLink="/register">Register</a>
+    </header>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav" (click)="onSidenavClick()">
+          <a mat-button routerLink="/page1">Page 1</a>
+          <a mat-button routerLink="/page2">Page 2</a>
+          <a mat-button routerLink="/page3">Page 3</a>
+          <a mat-button routerLink="/page4">Page 4</a>
+          <a mat-button routerLink="/page5">Page 5</a>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <main>
+            <router-outlet></router-outlet>
+          </main>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+  </div>
