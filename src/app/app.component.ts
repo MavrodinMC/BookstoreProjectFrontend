@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-bookstore-project';
+  public isMenuOpen: boolean = false;
+  title = 'Bookstore';
+
+  public onSidenavClick(): void {
+    this.isMenuOpen = false;
+  }
+
 }

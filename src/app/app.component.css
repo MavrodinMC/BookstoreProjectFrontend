@@ -1,0 +1,67 @@
+.app-title {
+    color: rgb(136, 183, 221);
+    font-size: 15px;
+}
+
+.page-container {
+    height: 100%;
+    background: #fafafa;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+ .spacer {
+    
+    flex: 1 1 auto;
+}
+
+
+.page-container a {
+        color: inherit;
+        text-decoration: none;
+}
+
+.page-container header {
+    background: #3f51b5;
+    color: #fff;
+    padding: 18px 24px;
+    
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-container  .menu-button {
+    margin-right: 24px;
+    min-width: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+.page-container  .app-title {
+    padding: 0 3px;
+}
+
+.sidenav-container {
+    flex: 1;
+}
+
+.sidenav-container main {
+    padding: 18px 24px;
+}
+
+.sidenav-container .sidenav {
+    min-width: 240px;
+}
+
+.sidenav-container .sidenav a {
+        display: block;
+        padding: 6px 24px;
+        width: 100%;
+        text-align: left;
+    
+}
+
+
