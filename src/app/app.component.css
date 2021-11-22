@@ -11,6 +11,10 @@
     flex-direction: column;
 }
 
+.login-and-register {
+    color:coral;
+}
+
  .spacer {
     
     flex: 1 1 auto;
@@ -24,9 +28,7 @@
 
 .page-container header {
     background: #3f51b5;
-    color: #fff;
     padding: 18px 24px;
-    
     font-size: 14px;
     font-weight: bold;
     display: flex;
@@ -34,6 +36,7 @@
 }
 
 .page-container  .menu-button {
+    color: white;
     margin-right: 24px;
     min-width: 0;
     padding: 0;
