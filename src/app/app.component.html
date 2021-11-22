@@ -11,8 +11,10 @@
       </div>
 
       <span class="spacer"></span>
-        <a mat-button id="login-btn" routerLink="/login">Login</a>
-        <a mat-button id="register-btn" routerLink="/register">Register</a>
+      <div class="login-and-register">
+        <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
+        <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
+      </div>
     </header>
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav" (click)="onSidenavClick()">
