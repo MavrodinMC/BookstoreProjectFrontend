@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './auth/register/register.component';
+import { SuccessPageComponent } from './auth/register/success-page/success-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    SuccessPageComponent
   ],
   imports: [
     BrowserModule,

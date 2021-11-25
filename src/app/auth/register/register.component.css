@@ -7,3 +7,11 @@
 .full-width {
     width: 100%;
   }
+
+.mat-card-actions button:disabled {
+  cursor: not-allowed;
+}
+
+.mat-card-actions button:enabled:hover {
+  background-color: rgb(62, 62, 226);
+}
