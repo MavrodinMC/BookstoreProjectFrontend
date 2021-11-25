@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 import { RegisterRequestPayload } from './register-request.payload';
 
@@ -42,11 +43,8 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerRequestPayload)
     .subscribe(() => {
-      this.router.navigate(['/'],
+      this.router.navigate(['/success'],
        {queryParams: {registered: 'true'}});
-       console.log('succes');
-    }, () => {
-      console.log('error');
     });
 
   }
