@@ -1,0 +1,26 @@
+html{
+    background-color: #eceff1;
+}
+
+.section {
+    padding: 3rem 1.5rem;
+    background-color: #eceff1;
+}
+
+.container{
+    padding: 8rem 3rem;
+}
+
+.title.is-3 {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+}
+
+h6.subtitle.is-6 {
+    margin-bottom: 3rem;
+}
+
+.desktop-version.is-hidden-touch {
+    margin-right: 26rem;
+    margin-left: 26rem;
+}

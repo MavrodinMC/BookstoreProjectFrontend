@@ -18,9 +18,9 @@ export class AccountConfirmationPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.queryParams.subscribe(params => {
-      const tokenBE = params['token'];
-      this.token = tokenBE;
-    })
+      const backendToken = params['token'];
+      this.token = backendToken;
+    });
 
     this.authService.captureActivationToken(this.token).subscribe();
   }

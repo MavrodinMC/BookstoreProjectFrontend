@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
@@ -10,13 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './auth/register/register.component';
 import { SuccessPageComponent } from './auth/register/success-page/success-page.component';
 import { AccountConfirmationPageComponent } from './auth/register/account-confirmation-page/account-confirmation-page.component';
+import { ActivationTokenInterceptor } from './activation-token-interceptor';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TokenExpiredMessageComponent } from './auth/register/token-expired-message/token-expired-message.component';
+import { TokenAlreadyUsedComponent } from './auth/register/token-already-used/token-already-used.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     SuccessPageComponent,
-    AccountConfirmationPageComponent
+    AccountConfirmationPageComponent,
+    PageNotFoundComponent,
+    TokenExpiredMessageComponent,
+    TokenAlreadyUsedComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,9 @@ import { AccountConfirmationPageComponent } from './auth/register/account-confir
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ActivationTokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
   schemas :[CUSTOM_ELEMENTS_SCHEMA]
 
