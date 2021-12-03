@@ -14,6 +14,8 @@ import { ActivationTokenInterceptor } from './activation-token-interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TokenExpiredMessageComponent } from './auth/register/token-expired-message/token-expired-message.component';
 import { TokenAlreadyUsedComponent } from './auth/register/token-already-used/token-already-used.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { TokenAlreadyUsedComponent } from './auth/register/token-already-used/to
     AccountConfirmationPageComponent,
     PageNotFoundComponent,
     TokenExpiredMessageComponent,
-    TokenAlreadyUsedComponent
+    TokenAlreadyUsedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    NgxWebstorageModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
