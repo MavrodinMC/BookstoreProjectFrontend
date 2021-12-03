@@ -11,9 +11,13 @@
       </div>
 
       <span class="spacer"></span>
-      <div class="login-and-register">
+      <div *ngIf="showOrHideButtons() === false" class="login-and-register">
         <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
         <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
+      </div>
+      <div *ngIf="showOrHideButtons() === true" class="logout-and-username">
+        <a mat-button>Profile</a>
+        <a mat-button mat-raised-button>Logout</a>
       </div>
     </header>
     <mat-sidenav-container class="sidenav-container">

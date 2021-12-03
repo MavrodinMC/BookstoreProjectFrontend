@@ -15,7 +15,7 @@ export class PageNotFoundComponent implements OnInit {
   
 
   backToHomepage() {
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 
 
