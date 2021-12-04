@@ -16,6 +16,7 @@ import { TokenExpiredMessageComponent } from './auth/register/token-expired-mess
 import { TokenAlreadyUsedComponent } from './auth/register/token-already-used/token-already-used.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     PageNotFoundComponent,
     TokenExpiredMessageComponent,
     TokenAlreadyUsedComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
       </div>
       <div *ngIf="showOrHideButtons() === true" class="logout-and-username">
         <a mat-button>Profile</a>
-        <a mat-button mat-raised-button>Logout</a>
+        <a routerLink="/logout" mat-button mat-raised-button routerLinkActive="active">Logout</a>
       </div>
     </header>
     <mat-sidenav-container class="sidenav-container">
