@@ -11,7 +11,6 @@ import { Observable, of, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "./auth/shared/auth.service";
-import { ThisReceiver } from "@angular/compiler";
 
 @Injectable()
 export class ActivationTokenInterceptor implements HttpInterceptor {

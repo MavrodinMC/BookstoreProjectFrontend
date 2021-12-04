@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
   loginRequestPayload: LoginRequestPayload;
   isError: boolean = false;
+  panelOpenState:boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     
@@ -47,6 +48,11 @@ export class LoginComponent implements OnInit {
         this.isError = true;
       }
     });
+  }
+
+  togglePanel(index: number) {
+    
+
   }
 
 }
