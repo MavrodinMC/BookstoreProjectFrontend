@@ -21,9 +21,7 @@ export class ActivationTokenInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
         tap(evt => {
-            if (evt instanceof HttpResponse) {
-              this.router.navigate(['/accountConfirmation']);
-            }
+            
         }), catchError((err:any) => {
             if (err.status === 404) {
                 this.router.navigate(['/404'], {skipLocationChange: true});
