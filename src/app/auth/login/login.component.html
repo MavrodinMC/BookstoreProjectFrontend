@@ -10,7 +10,8 @@
         <mat-card>
           <mat-card-content>
             <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
-              <h2>Log In</h2>
+              <h1>Log In</h1>
+              <h3>Don't have an account? <b><a href="/register">Sign up here</a></b></h3>
               <mat-error *ngIf="isError">
                 Wrong email or password
               </mat-error>
@@ -31,8 +32,8 @@
           <mat-card-actions>
             <button type="submit" form="login-form" mat-raised-button [disabled]="!loginForm.valid" color="primary">Login</button>
           </mat-card-actions>
+            <b><a href="#" class="forgot-password">Forgot password</a></b>
         </mat-card>
-
       </body>
      
 </html>

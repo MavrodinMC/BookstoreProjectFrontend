@@ -1,8 +1,29 @@
 mat-card {
   max-width: 400px;
   margin: 2em auto;
+}
+
+mat-card h1, h3 {
   text-align: center;
 }
+
+mat-card h1 {
+  color: white;
+  background-color: rgb(58, 58, 230);
+}
+
+mat-card a {
+  text-decoration: none;
+}
+
+mat-card a:visited {
+  color: inherit;
+}
+
+mat-card a:hover {
+  color: coral;
+}
+
 
 mat-form-field {
   display: block;
@@ -10,6 +31,20 @@ mat-form-field {
 
 .mat-card-actions button:disabled {
   cursor: not-allowed;
+}
+
+.mat-card-actions button {
+  float: right;
+}
+
+.mat-card-actions {
+  width: 210px;
+  padding-left: 20px;
+}
+
+.mat-card-actions .forgot-password {
+
+  display: inline;
 }
 
 .mat-card-actions button:enabled:hover {

@@ -1,12 +1,20 @@
-.my-form{
+.my-form {
     min-width: 150px;
     max-width: 500px;
-    width: 100%;
+    width: 50%;
   }
   
 .full-width {
     width: 100%;
   }
+
+.mat-toolbar {
+  background-color:rgb(62, 62, 226);
+}
+
+.mat-toolbar span {
+  color: white;
+}
 
 .mat-card-actions button:disabled {
   cursor: not-allowed;
@@ -15,3 +23,9 @@
 .mat-card-actions button:enabled:hover {
   background-color: rgb(62, 62, 226);
 }
+
+.mat-card-content h2 {
+  border-spacing: border-box;
+  float: right;
+}
+
