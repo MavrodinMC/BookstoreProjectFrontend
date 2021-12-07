@@ -50,3 +50,7 @@ mat-form-field {
 .mat-card-actions button:enabled:hover {
   background-color: rgb(62, 62, 226);
 }
+
+.mat-card-content .mat-error {
+  text-align: center;
+}
