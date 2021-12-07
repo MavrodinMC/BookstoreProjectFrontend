@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { RegisterRequestPayload } from '../register/register-request.payload';
-import { catchError, map} from 'rxjs/operators';
+import { catchError, map, tap} from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login.request.payload';
 import { LoginResponsePayload } from '../login/login.response.payload';
@@ -77,7 +77,7 @@ export class AuthService {
 
   refreshToken() {
     
-    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/bookstore/refresh/token`, this.refreshTokenPayload).pipe(map(response => {
+    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/bookstore/refresh/token`, this.refreshTokenPayload).pipe(tap(response => {
 
       this.localStorage.clear('authenticationToken');
       this.localStorage.clear('expiresAt');
@@ -135,5 +135,11 @@ export class AuthService {
       return of(result as string);
     }
   }
-
+  
 }
+
+
+
+
+
+

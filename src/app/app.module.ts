@@ -17,6 +17,7 @@ import { TokenAlreadyUsedComponent } from './auth/register/token-already-used/to
 import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { TokenInterceptor } from './auth-token-interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LogoutComponent } from './auth/logout/logout.component';
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ActivationTokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ActivationTokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   schemas :[CUSTOM_ELEMENTS_SCHEMA]
