@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { LoginRequestPayload } from './login.request.payload';
@@ -15,9 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
   loginRequestPayload: LoginRequestPayload;
   isError: boolean = false;
-  panelOpenState:boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     
     this.loginRequestPayload = {
       email: '',
@@ -43,16 +43,16 @@ export class LoginComponent implements OnInit {
 
       if (data) {
         this.router.navigate([''], {queryParams: {loginSuccess: 'true'}});
+        this.snackBar.open("Welcome! We've missed having you around!", 'X', {
+          duration: 5000,
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar']
+        });
       } else {
         this.router.navigate(['/login'], {queryParams: {loginSuccess: 'false'}})
         this.isError = true;
       }
     });
-  }
-
-  togglePanel(index: number) {
-    
-
   }
 
 }
