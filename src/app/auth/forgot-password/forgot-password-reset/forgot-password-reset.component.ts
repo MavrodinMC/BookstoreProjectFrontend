@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
+import { ForgotPasswordService } from '../../shared/forgot-password.service';
 import { PasswordRequest } from '../password-request';
 
 @Component({
@@ -16,7 +17,7 @@ export class ForgotPasswordResetComponent implements OnInit {
   forgotPasswordForm: FormGroup | any;
   resetToken: string | any;
 
-  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar) { 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar, private forgotPasswordService: ForgotPasswordService) { 
     this.passwordRequestPayload = {
       newPassword: '',
       confirmNewPassword: ''
@@ -30,7 +31,7 @@ export class ForgotPasswordResetComponent implements OnInit {
       this.resetToken = backendResetToken;
     });
 
-    this.authService.captureForgotPasswordToken(this.resetToken).subscribe();
+    this.forgotPasswordService.captureForgotPasswordToken(this.resetToken).subscribe();
 
     this.forgotPasswordForm = new FormGroup(
       {
@@ -52,7 +53,7 @@ export class ForgotPasswordResetComponent implements OnInit {
         panelClass: ['red-snackbar']
       });
     } else {
-      this.authService.forgotPasswordReset(this.resetToken, this.passwordRequestPayload).subscribe();
+      this.forgotPasswordService.forgotPasswordReset(this.resetToken, this.passwordRequestPayload).subscribe();
     this.snackBar.open("Password changed! Try to log in with your new password!", 'X', {
       duration: 5000,
       verticalPosition: 'top',

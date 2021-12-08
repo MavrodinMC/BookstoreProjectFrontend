@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { RegisterRequestPayload } from '../register/register-request.payload';
@@ -6,8 +6,7 @@ import { catchError, map, tap} from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login.request.payload';
 import { LoginResponsePayload } from '../login/login.response.payload';
-import { PasswordRequest } from '../forgot-password/password-request';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Injectable({
@@ -100,44 +99,6 @@ export class AuthService {
       console.log('activated');
       this.isTokenValid = true;
     }));
-  }
-
-  
-  forgotPassword(email: string): Observable<boolean> {
-        
-    return this.httpClient.post(this.BACKEND_URL + `/bookstore/generateReset`, email, {responseType: 'text'}).pipe(map(data => {
-
-       this.localStorage.store('email', data);
-
-        if (data === "") {
-          return false;
-        }
-
-        return true;
-    })); 
- }
-
-  captureForgotPasswordToken(resetToken: string): Observable<any> {
-      
-    let params = new HttpParams().set('resetToken', resetToken);
-
-    const options = {responseType: 'text', params};
-
-    return this.httpClient.get<any>(this.BACKEND_URL + `/bookstore/forgot`, {params: params}).pipe(map(_ => {
-      this.isTokenValid = true;
-    }));
-  }
-
-  forgotPasswordReset(resetToken: string, passwordPayload: PasswordRequest): Observable<any> {
-
-    let params = new HttpParams().set('resetToken', resetToken);
-
-    const options = {responsetype: 'text', params};
-              
-     return this.httpClient.post<any>(this.BACKEND_URL + `/bookstore/resetPassword`, passwordPayload, options).pipe(map(_ => {
-        console.log('password changed');
-      }), catchError(this.handleError('an error occurred')));
-
   }
 
   getEmail() {
