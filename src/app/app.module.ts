@@ -18,6 +18,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { TokenInterceptor } from './auth-token-interceptor';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ForgotPasswordResetComponent } from './auth/forgot-password/forgot-password-reset/forgot-password-reset.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { TokenInterceptor } from './auth-token-interceptor';
     TokenExpiredMessageComponent,
     TokenAlreadyUsedComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ForgotPasswordComponent,
+    ForgotPasswordResetComponent
   ],
   imports: [
     BrowserModule,
