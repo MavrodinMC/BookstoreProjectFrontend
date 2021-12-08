@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../shared/auth.service';
+import { ForgotPasswordService } from '../shared/forgot-password.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
   email: string = '';
   emailForm: FormGroup | any;
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) {
+  constructor(private forgotPasswordService: ForgotPasswordService, private snackBar: MatSnackBar) {
     
    }
 
@@ -32,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.email = this.emailForm.get('email').value;
     
-    this.authService.forgotPassword(this.email).subscribe( data => {
+    this.forgotPasswordService.forgotPassword(this.email).subscribe( data => {
           
       if (data) {
         this.snackBar.open("Alright, good job! Check your email for the reset password link!", 'X', {
