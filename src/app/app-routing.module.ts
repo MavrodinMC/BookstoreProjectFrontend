@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UserPersonalDetailsComponent } from './app-user/user-personal-details/user-personal-details.component';
 import { ForgotPasswordResetComponent } from './auth/forgot-password/forgot-password-reset/forgot-password-reset.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'forgot-password-reset', component: ForgotPasswordResetComponent},
   {path: 'success', component: SuccessPageComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: 'profile', component: UserPersonalDetailsComponent},
   {path: 'accountConfirmation', component: AccountConfirmationPageComponent},
   {path: '404/', component: PageNotFoundComponent},
   {path: 'expired', component: TokenExpiredMessageComponent},

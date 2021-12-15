@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { UserPersonalDetailsPayload } from './app-user/user-personal-details';
 import { AuthService } from './auth/shared/auth.service';
+import { UserPersonalDetailsService } from './services/user-personal-details.service';
 
 @Component({
   selector: 'app-root',
