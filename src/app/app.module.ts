@@ -20,6 +20,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { TokenInterceptor } from './auth-token-interceptor';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './auth/forgot-password/forgot-password-reset/forgot-password-reset.component';
+import { UserPersonalDetailsComponent } from './app-user/user-personal-details/user-personal-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ForgotPasswordResetComponent } from './auth/forgot-password/forgot-pass
     LoginComponent,
     LogoutComponent,
     ForgotPasswordComponent,
-    ForgotPasswordResetComponent
+    ForgotPasswordResetComponent,
+    UserPersonalDetailsComponent
   ],
   imports: [
     BrowserModule,
