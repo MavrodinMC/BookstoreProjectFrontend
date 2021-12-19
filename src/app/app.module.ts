@@ -49,8 +49,8 @@ import { UserPersonalDetailsComponent } from './app-user/user-personal-details/u
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ActivationTokenInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ActivationTokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   schemas :[CUSTOM_ELEMENTS_SCHEMA]
