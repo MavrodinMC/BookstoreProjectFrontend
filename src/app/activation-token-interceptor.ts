@@ -27,5 +27,6 @@ export class ActivationTokenInterceptor implements HttpInterceptor {
             }
             return of(err);
         }));
+        
   }
 }
