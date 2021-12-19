@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'profile', component: UserPersonalDetailsComponent},
   {path: 'accountConfirmation', component: AccountConfirmationPageComponent},
-  {path: '404/', component: PageNotFoundComponent},
+  {path: '404', component: PageNotFoundComponent},
   {path: 'expired', component: TokenExpiredMessageComponent},
   {path: 'used', component: TokenAlreadyUsedComponent},
   {path: '**', redirectTo: '404'}
