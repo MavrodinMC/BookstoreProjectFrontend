@@ -1,4 +1,5 @@
 export interface UserPersonalDetailsPayload {
+    
     id?: number;
     favoriteAuthor: string;
     favoriteBook: string;

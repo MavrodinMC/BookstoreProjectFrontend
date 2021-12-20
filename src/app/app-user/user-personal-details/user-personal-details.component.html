@@ -6,6 +6,11 @@
       <meta charset="UTF-8">
       </head>
      <body>
+        <div>
+           <h3>
+            This is your personal page. You will find here everything related to your account, from things you enjoy and you are passionate about, to your shipping address (or addresses), as well as your last orders.
+           </h3>
+        </div>
         <mat-toolbar>
             <span>Tell us something about yourself!</span>
           </mat-toolbar>
@@ -34,5 +39,10 @@
                 <button mat-raised-button (click) = "updateUserProfilebyId(userProfile?.id)" color="primary">UPDATE</button>
              </mat-card-actions>
           </mat-card>
+
+          <div class="address-message" *ngIf="userShippingAddress.length === 0">
+             <h4>You currently don't have any addresses to your account. You will need one if you intend to place an order. You can add one by clicking on the plus sign below.</h4>
+             <button mat-raised-button color="primary"></button>
+          </div>
      </body>
 </html>
