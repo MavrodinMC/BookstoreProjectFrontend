@@ -12,8 +12,15 @@ export class UserShippingAddressesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUserShippingAddresses(email: string): Observable<ShippingAddress> {
+  getUserShippingAddresses(email: string): Observable<ShippingAddress[]> {
          
-    return this.httpClient.get<ShippingAddress>(this.BACKEND_URL + `/bookstore/shippingAddresses/${email}`);
+    return this.httpClient.get<ShippingAddress[]>(this.BACKEND_URL + `/bookstore/shippingAddress/${email}`);
+    
+  }
+
+  saveAddressForAUser(email: string, shippingAddress: ShippingAddress): Observable<ShippingAddress> {
+
+    return this.httpClient.post<ShippingAddress>(this.BACKEND_URL + `/bookstore/save/shippingAddress/${email}`, shippingAddress);
+
   }
 }
