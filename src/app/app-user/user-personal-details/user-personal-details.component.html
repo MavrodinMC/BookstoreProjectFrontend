@@ -40,9 +40,11 @@
              </mat-card-actions>
           </mat-card>
 
-          <div class="address-message" *ngIf="userShippingAddress.length === 0">
+          <div class="address-message" *ngIf="userShippingAddressArray.length === 0">
              <h4>You currently don't have any addresses to your account. You will need one if you intend to place an order. You can add one by clicking on the plus sign below.</h4>
-             <button mat-raised-button color="primary"></button>
+             <button mat-raised-button color="primary" (click)="openAddressForm()">
+                <mat-icon>add</mat-icon>Address
+             </button>
           </div>
      </body>
 </html>

@@ -21,6 +21,7 @@ import { TokenInterceptor } from './auth-token-interceptor';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './auth/forgot-password/forgot-password-reset/forgot-password-reset.component';
 import { UserPersonalDetailsComponent } from './app-user/user-personal-details/user-personal-details.component';
+import { UserShippingAddressComponent } from './app-user/user-shipping-address/user-shipping-address.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserPersonalDetailsComponent } from './app-user/user-personal-details/u
     LogoutComponent,
     ForgotPasswordComponent,
     ForgotPasswordResetComponent,
-    UserPersonalDetailsComponent
+    UserPersonalDetailsComponent,
+    UserShippingAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { UserPersonalDetailsComponent } from './app-user/user-personal-details/u
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  schemas :[CUSTOM_ELEMENTS_SCHEMA]
+  schemas :[CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [UserShippingAddressComponent]
 
 })
 export class AppModule { }

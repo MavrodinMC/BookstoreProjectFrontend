@@ -7,4 +7,5 @@ export interface ShippingAddress {
     city: string;
     state: string;
     zipCode: string;
+    default: boolean;
 }

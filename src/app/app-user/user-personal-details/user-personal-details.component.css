@@ -32,23 +32,8 @@
   font-weight: bold;
 }
 
-.address-message button {
-  height: 24px;
-  width: 24px;
-  display: inline-block;
-  color: white;
-  font-size: 24px;
-  line-height: 24px;
-  text-align: center;
-}
-
 .address-message button:hover {
   background-color: rgb(62, 62, 226);
-}
-
-.address-message button::before {
-  display: block;
-  content: '+';
 }
 
 h3 {

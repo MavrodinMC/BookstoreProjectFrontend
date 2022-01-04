@@ -1,0 +1,49 @@
+  <mat-toolbar>
+    <span>New Shipping Address</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="userShippingAddressForm">
+        <div class="controles-container">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Full Name" [formControlName]="'fullName'" required>
+            <mat-error *ngIf="!userShippingAddressForm.get('fullName').valid">
+              Field cannot be empty
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="address" placeholder="Address" [formControlName]="'address'" required>
+            <mat-error *ngIf="!userShippingAddressForm.get('address').valid">
+              Field cannot be empty
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="City" [formControlName]="'city'" required>
+                <mat-error *ngIf="!userShippingAddressForm.get('city').valid">
+                  Field cannot be empty
+                </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Phone Number" [formControlName]="'phoneNumber'" required minlength="10" maxlength="10">
+            <mat-error *ngIf="!userShippingAddressForm.get('phoneNumber').valid">
+              Field cannot be empty and the phone number must be a valid 10-digit number
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="State" [formControlName]="'state'" required>
+            <mat-error *ngIf="!userShippingAddressForm.get('state').valid">
+              Field cannot be empty
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Zip Code" [formControlName]="'zipCode'" step="1" pattern="\d+" min="0">
+          </mat-form-field>
+        </div>
+          <div class="add-bottom-padding">
+            <mat-checkbox (change)="checkDefault($event)" color="primary">Set default address</mat-checkbox>
+          </div>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!userShippingAddressForm.valid" (click)="saveUserAddress()">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+  </form>
