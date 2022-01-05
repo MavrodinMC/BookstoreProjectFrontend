@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserPersonalDetailsService } from 'src/app/services/user-personal-details.service';
 import { UserShippingAddressesService } from 'src/app/services/user-shipping-addresses.service';
@@ -16,14 +17,14 @@ import { ShippingAddress } from '../user-shipping-addresses';
 })
 export class UserPersonalDetailsComponent implements OnInit {
 
+  addressList: MatTableDataSource<any>;
   userProfile: UserPersonalDetailsPayload | any;
   userDetailsForm: FormGroup | any;
-  userShippingAddressArray: ShippingAddress[] | any;
-  userShippingAddressForm: FormGroup | any;
+  displayedColumns: string[] = ['fullName', 'address', 'phoneNumber', 'city', 'state', 'zipCode', 'actions'];
 
-  constructor(private userPersonalDetailsService: UserPersonalDetailsService, private authService: AuthService, private userShippingAddressService: UserShippingAddressesService,private snackBar: MatSnackBar, private dialog: MatDialog) { 
+  constructor(private userPersonalDetailsService: UserPersonalDetailsService, private authService: AuthService, private userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, private dialog: MatDialog) { 
     this.userProfile = {};
-    this.userShippingAddressArray = {};
+    this.addressList = new MatTableDataSource();
   }
 
   ngOnInit(): void {
@@ -31,7 +32,6 @@ export class UserPersonalDetailsComponent implements OnInit {
    this.getUserProfileByEmail();
    this.getUserAddresses();
   
-
    this.userDetailsForm = new FormGroup ( {
           
     favoriteAuthor: new FormControl(this.userProfile.favoriteAuthor, Validators.required),
@@ -56,7 +56,8 @@ export class UserPersonalDetailsComponent implements OnInit {
 
   getUserAddresses() {
     this.userShippingAddressService.getUserShippingAddresses(this.getLoggedInUsername()).subscribe(data => {
-        this.userShippingAddressArray = data;
+
+        this.addressList = new MatTableDataSource(data);
     });
   }
 

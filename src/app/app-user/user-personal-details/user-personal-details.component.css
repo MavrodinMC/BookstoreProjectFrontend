@@ -41,3 +41,13 @@ h3 {
   font-weight: bold;
   text-align: center;
 }
+
+.addressButton {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 15px;
+}
+
+.addressButton p {
+  font-size: 15px;
+}
