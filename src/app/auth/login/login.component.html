@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
-      <head>
-          <title>Login - Bookstore</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta charset="UTF-8">
-      </head>
-      <body>
 
-        <mat-card>
-          <mat-card-content>
-            <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
-              <h1>Log In</h1>
-              <h3>Don't have an account? <b><a href="/register">Sign up here</a></b></h3>
-              <mat-error *ngIf="isError">
-                Wrong email or password
-              </mat-error>
-              <mat-form-field class="full-width-input">
-                <input matInput type="email" placeholder="Email" [formControlName]="'email'" required>
-                <mat-error *ngIf="!loginForm.get('email').valid">
-                  Field cannot be empty
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="full-width-input">
-                <input matInput type="password" placeholder="Password" [formControlName]="'password'" required minlength="6">
-                <mat-error *ngIf="!loginForm.get('password').valid">
-                  Field cannot be empty
-                </mat-error>
-              </mat-form-field>
-            </form>
-          </mat-card-content>
-          <mat-card-actions>
-            <button type="submit" form="login-form" mat-raised-button [disabled]="!loginForm.valid" color="primary">Login</button>
-          </mat-card-actions>
-            <b><a href="/forgot-password" class="forgot-password">Forgot password?</a></b>
-        </mat-card>
-      </body>
-     
+<head>
+  <title>Login - Bookstore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <mat-card>
+    <mat-card-content>
+      <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1>Log In</h1>
+        <h3>Don't have an account? <b><a href="/register">Sign up here</a></b></h3>
+        <mat-error *ngIf="isError">
+          Wrong email or password
+        </mat-error>
+        <mat-form-field class="full-width-input">
+          <input matInput type="email" placeholder="Email" [formControlName]="'email'" required>
+          <mat-error *ngIf="!loginForm.get('email').valid">
+            Field cannot be empty
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Password" [formControlName]="'password'" required minlength="6">
+          <mat-error *ngIf="!loginForm.get('password').valid">
+            Field cannot be empty
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" form="login-form" mat-raised-button [disabled]="!loginForm.valid"
+        color="primary">Login</button>
+    </mat-card-actions>
+    <b><a href="/forgot-password" class="forgot-password">Forgot password?</a></b>
+  </mat-card>
+</body>
+
 </html>
