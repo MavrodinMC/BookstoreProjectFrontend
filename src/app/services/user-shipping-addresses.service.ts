@@ -8,19 +8,24 @@ import { ShippingAddress } from '../app-user/user-shipping-addresses';
 })
 export class UserShippingAddressesService {
 
-  BACKEND_URL = "http://localhost:8080";
+  BACKEND_URL = "http://localhost:8080/bookstore";
 
   constructor(private httpClient: HttpClient) { }
 
   getUserShippingAddresses(email: string): Observable<ShippingAddress[]> {
          
-    return this.httpClient.get<ShippingAddress[]>(this.BACKEND_URL + `/bookstore/shippingAddress/${email}`);
+    return this.httpClient.get<ShippingAddress[]>(this.BACKEND_URL + `/shippingAddress/${email}`);
     
   }
 
   saveAddressForAUser(email: string, shippingAddress: ShippingAddress): Observable<ShippingAddress> {
 
-    return this.httpClient.post<ShippingAddress>(this.BACKEND_URL + `/bookstore/save/shippingAddress/${email}`, shippingAddress);
+    return this.httpClient.post<ShippingAddress>(this.BACKEND_URL + `/save/shippingAddress/${email}`, shippingAddress);
 
+  }
+
+  deleteAddressForAUser(shippingAddressId: number, email: string): Observable<void> {
+
+    return this.httpClient.delete<void>(this.BACKEND_URL + `/delete/${shippingAddressId}/${email}`);
   }
 }

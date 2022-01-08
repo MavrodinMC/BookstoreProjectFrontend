@@ -15,7 +15,7 @@ import { LoginResponsePayload } from '../login/login.response.payload';
 export class AuthService {
 
 
-  BACKEND_URL = "http://localhost:8080";
+  BACKEND_URL = "http://localhost:8080/bookstore";
   isTokenValid = false;
   isAuthenticated: boolean = false;
   private loginStatus = new BehaviorSubject<boolean>(this.checkLoginStatus());
@@ -29,13 +29,13 @@ export class AuthService {
 
   register(registerRequestPayload: RegisterRequestPayload): Observable<any> {
 
-    return this.httpClient.post(this.BACKEND_URL + '/bookstore/register', registerRequestPayload, {responseType: 'text'}).pipe
+    return this.httpClient.post(this.BACKEND_URL + '/register', registerRequestPayload, {responseType: 'text'}).pipe
     (map(_ => console.log('registered')), catchError(this.handleError('an error occurred')));
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
 
-    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/bookstore/login`, loginRequestPayload).pipe(map(data => {
+    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/login`, loginRequestPayload).pipe(map(data => {
 
         this.localStorage.store('authenticationToken', data.authenticationToken);
         this.localStorage.store('email', data.email);
@@ -58,7 +58,7 @@ export class AuthService {
 
   logout() {
 
-    this.httpClient.post(this.BACKEND_URL + `/bookstore/logout`, this.getRefreshToken(),
+    this.httpClient.post(this.BACKEND_URL + `/logout`, this.getRefreshToken(),
       { responseType: 'text' })
       .subscribe(()=> {
       }, error => {
@@ -77,7 +77,7 @@ export class AuthService {
 
   refreshToken() {
     
-    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/bookstore/refresh/token`, this.refreshTokenPayload).pipe(tap(response => {
+    return this.httpClient.post<LoginResponsePayload>(this.BACKEND_URL + `/refresh/token`, this.refreshTokenPayload).pipe(tap(response => {
 
       this.localStorage.clear('authenticationToken');
       this.localStorage.clear('expiresAt');
@@ -94,7 +94,7 @@ export class AuthService {
 
     const options = {responsetype: 'text', params};
 
-    return this.httpClient.get<any>(this.BACKEND_URL + `/bookstore/accountConfirmation`, options).pipe
+    return this.httpClient.get<any>(this.BACKEND_URL + `/accountConfirmation`, options).pipe
     (map(_ => {
       console.log('activated');
       this.isTokenValid = true;
