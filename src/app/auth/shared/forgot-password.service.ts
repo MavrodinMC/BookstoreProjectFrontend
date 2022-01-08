@@ -10,7 +10,7 @@ import { PasswordRequest } from '../forgot-password/password-request';
 })
 export class ForgotPasswordService {
 
-  BACKEND_URL = "http://localhost:8080";
+  BACKEND_URL = "http://localhost:8080/bookstore";
   isTokenValid: boolean = false;
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
@@ -18,7 +18,7 @@ export class ForgotPasswordService {
   
   forgotPassword(email: string): Observable<boolean> {
         
-    return this.httpClient.post(this.BACKEND_URL + `/bookstore/generateReset`, email, {responseType: 'text'}).pipe(map(data => {
+    return this.httpClient.post(this.BACKEND_URL + `/generateReset`, email, {responseType: 'text'}).pipe(map(data => {
 
        this.localStorage.store('email', data);
 
@@ -36,7 +36,7 @@ export class ForgotPasswordService {
 
     const options = {responseType: 'text', params};
 
-    return this.httpClient.get<any>(this.BACKEND_URL + `/bookstore/forgot`, {params: params}).pipe(map(_ => {
+    return this.httpClient.get<any>(this.BACKEND_URL + `/forgot`, {params: params}).pipe(map(_ => {
       this.isTokenValid = true;
     }));
   }
@@ -47,7 +47,7 @@ export class ForgotPasswordService {
 
     const options = {responsetype: 'text', params};
               
-     return this.httpClient.post<any>(this.BACKEND_URL + `/bookstore/resetPassword`, passwordPayload, options).pipe(map(_ => {
+     return this.httpClient.post<any>(this.BACKEND_URL + `/resetPassword`, passwordPayload, options).pipe(map(_ => {
         console.log('password changed');
       }), catchError(this.handleError('an error occurred')));
 

@@ -91,7 +91,7 @@
                <button mat-icon-button>
                   <mat-icon>launch</mat-icon>
                </button>
-               <button mat-icon-button color="warn">
+               <button mat-icon-button color="warn" (click)="deleteAddressForAUser(row.addressId)">
                   <mat-icon>delete_outline</mat-icon>
                </button>
             </mat-cell>

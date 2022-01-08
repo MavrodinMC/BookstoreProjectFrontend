@@ -18,13 +18,14 @@ import { ShippingAddress } from '../user-shipping-addresses';
 export class UserPersonalDetailsComponent implements OnInit {
 
   addressList: MatTableDataSource<any>;
+  addressArray: ShippingAddress[] | any;
   userProfile: UserPersonalDetailsPayload | any;
   userDetailsForm: FormGroup | any;
   displayedColumns: string[] = ['fullName', 'address', 'phoneNumber', 'city', 'state', 'zipCode', 'actions'];
 
   constructor(private userPersonalDetailsService: UserPersonalDetailsService, private authService: AuthService, private userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, private dialog: MatDialog) { 
     this.userProfile = {};
-    this.addressList = new MatTableDataSource();
+    this.addressList = new MatTableDataSource(this.addressArray);
   }
 
   ngOnInit(): void {
@@ -57,7 +58,9 @@ export class UserPersonalDetailsComponent implements OnInit {
   getUserAddresses() {
     this.userShippingAddressService.getUserShippingAddresses(this.getLoggedInUsername()).subscribe(data => {
 
-        this.addressList = new MatTableDataSource(data);
+        this.addressArray = data;
+
+        this.addressList = new MatTableDataSource(this.addressArray);
     });
   }
 
@@ -78,9 +81,34 @@ export class UserPersonalDetailsComponent implements OnInit {
         horizontalPosition: 'right',
         panelClass: ['green-snackbar']
 
-    })
-  })
+      });
+    });
  }
+
+ deleteAddressForAUser(shippingAddressId: number): void {
+
+     this.userShippingAddressService.deleteAddressForAUser(shippingAddressId, this.getLoggedInUsername()).subscribe(() => {
+
+      if (confirm('Are you sure you want to delete this record?')) {
+
+        this.addressList.data.splice(shippingAddressId, 0);
+
+        this.snackBar.open("Address deleted!", 'X', {
+          duration: 5000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+          panelClass: ['red-snackbar']
+    
+          });
+
+          this.ngOnInit();
+
+      }});
+ }
+
+ refreshParent() {
+  window.location.reload();
+}
 
   getLoggedInUsername(): string {
     return this.authService.getEmail();

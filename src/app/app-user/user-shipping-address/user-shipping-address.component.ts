@@ -1,9 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserShippingAddressesService } from 'src/app/services/user-shipping-addresses.service';
 import { UserPersonalDetailsComponent } from '../user-personal-details/user-personal-details.component';
@@ -20,7 +19,7 @@ export class UserShippingAddressComponent implements OnInit {
   userShippingAddress: ShippingAddress;
   isDefaultChecked: boolean = false;
 
-  constructor(private authService: AuthService, private userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, private router: Router, public dialogRef: MatDialogRef<UserPersonalDetailsComponent>) {
+  constructor(private authService: AuthService, private userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserPersonalDetailsComponent>) {
 
       this.userShippingAddress = {
         fullName: '',
@@ -60,12 +59,14 @@ export class UserShippingAddressComponent implements OnInit {
 
        this.userShippingAddressService.saveAddressForAUser(this.getLoggedInUsername(), this.userShippingAddress).subscribe(() => {
          
+              this.onClose();
+
               this.snackBar.open("Address saved", 'X', {
                 duration: 5000,
                 verticalPosition: 'top',
                 panelClass: ['green-snackbar']
               });
-              this.onClose();
+
               this.refreshParent();
        })
 

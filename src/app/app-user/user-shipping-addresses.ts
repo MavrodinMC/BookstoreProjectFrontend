@@ -1,6 +1,6 @@
 export interface ShippingAddress {
 
-    id?: number;
+    addressId?: number;
     fullName: string;
     address: string;
     phoneNumber: string;
