@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>New Shipping Address</span>
+  <span>{{userShippingAddressService.shippingAddressForm.controls['addressId'].value?"Modify Shipping Address":"New Shipping Address"}}</span>
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
     <mat-icon>clear</mat-icon>
@@ -7,6 +7,7 @@
 </mat-toolbar>
 <form [formGroup]="userShippingAddressForm">
   <div class="controles-container">
+    <input type="hidden" formControlName="addressId">
     <mat-form-field>
       <input matInput type="text" placeholder="Full Name" [formControlName]="'fullName'" required>
       <mat-error *ngIf="!userShippingAddressForm.get('fullName').valid">
@@ -43,7 +44,7 @@
     </mat-form-field>
   </div>
   <div class="add-bottom-padding">
-    <mat-checkbox (change)="checkDefault($event)" color="primary">Set default address</mat-checkbox>
+    <mat-checkbox [formControlName]="'isDefault'" (change)="checkDefault($event)" color="primary">Set default address</mat-checkbox>
   </div>
   <div class="button-row">
     <button mat-raised-button color="primary" type="submit" [disabled]="!userShippingAddressForm.valid"
