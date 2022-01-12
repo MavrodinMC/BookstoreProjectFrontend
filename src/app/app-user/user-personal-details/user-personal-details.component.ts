@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatRow, MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserPersonalDetailsService } from 'src/app/services/user-personal-details.service';
 import { UserShippingAddressesService } from 'src/app/services/user-shipping-addresses.service';
@@ -38,7 +38,7 @@ export class UserPersonalDetailsComponent implements OnInit {
     favoriteAuthor: new FormControl(this.userProfile.favoriteAuthor, Validators.required),
     favoriteBook: new FormControl(this.userProfile.favoriteBook, Validators.required),
     favoriteQuote: new FormControl(this.userProfile.favoriteQuote, Validators.required),
-    aboutYourself: new FormControl(this.userProfile.aboutYouself, Validators.required)
+    aboutYourself: new FormControl(this.userProfile.aboutYourself, Validators.required)
 
    })
   }
@@ -85,6 +85,19 @@ export class UserPersonalDetailsComponent implements OnInit {
     });
  }
 
+ updateAddressForAUser(row: any) {
+
+  this.userShippingAddressService.populateShippingAddressUpdateForm(row);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+  
+  this.dialog.open(UserShippingAddressComponent, dialogConfig);
+
+ }
+
  deleteAddressForAUser(shippingAddressId: number): void {
 
      this.userShippingAddressService.deleteAddressForAUser(shippingAddressId, this.getLoggedInUsername()).subscribe(() => {
@@ -115,7 +128,11 @@ export class UserPersonalDetailsComponent implements OnInit {
   }
 
   openAddressForm() {
-    this.dialog.open(UserShippingAddressComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(UserShippingAddressComponent, dialogConfig);
   }
 
 }

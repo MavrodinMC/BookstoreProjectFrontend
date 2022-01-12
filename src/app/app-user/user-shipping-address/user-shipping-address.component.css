@@ -6,7 +6,7 @@ div.container{
     /* This fills the remaining space, by using flexbox. 
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
-  }
+}
 
 form.normal-form {
     margin: 10px;
@@ -58,6 +58,11 @@ form.normal-form {
 .button-row button{
     margin-left: 50px;
     margin: 5px;
+}
+
+.button-row button:disabled {
+    
+    cursor:not-allowed;
 }
 
 .add-bottom-padding {

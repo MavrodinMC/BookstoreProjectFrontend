@@ -19,7 +19,7 @@ export class UserShippingAddressComponent implements OnInit {
   userShippingAddress: ShippingAddress;
   isDefaultChecked: boolean = false;
 
-  constructor(private authService: AuthService, private userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserPersonalDetailsComponent>) {
+  constructor(private authService: AuthService, public userShippingAddressService: UserShippingAddressesService, private snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserPersonalDetailsComponent>) {
 
       this.userShippingAddress = {
         fullName: '',
@@ -34,41 +34,54 @@ export class UserShippingAddressComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userShippingAddressForm = new FormGroup ( {
-          
-      fullName: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
-      state: new FormControl('', Validators.required),
-      zipCode: new FormControl('')
-     })
+   this.userShippingAddressForm = this.userShippingAddressService.shippingAddressForm;
   }
 
 
   saveUserAddress() {
 
-       this.userShippingAddress.fullName = this.userShippingAddressForm.get('fullName').value;
-       this.userShippingAddress.address = this.userShippingAddressForm.get('address').value;
-       this.userShippingAddress.phoneNumber = this.userShippingAddressForm.get('phoneNumber').value;
-       this.userShippingAddress.city = this.userShippingAddressForm.get('city').value;
-       this.userShippingAddress.state = this.userShippingAddressForm.get('state').value;
-       this.userShippingAddress.zipCode = this.userShippingAddressForm.get('zipCode').value;
-       this.userShippingAddress.default = this.isDefaultChecked;
+      if (this.userShippingAddressService.shippingAddressForm.get('addressId')!.value) {
 
+        this.userShippingAddressService.updateAddressForAUser(this.userShippingAddressForm.value).subscribe(() => {
+          
+          this.onClose();
 
-       this.userShippingAddressService.saveAddressForAUser(this.getLoggedInUsername(), this.userShippingAddress).subscribe(() => {
-         
-              this.onClose();
+          this.snackBar.open("Address updated", 'X', {
+            duration: 5000,
+            verticalPosition: 'top',
+            panelClass: ['green-snackbar']
+          });
 
-              this.snackBar.open("Address saved", 'X', {
-                duration: 5000,
-                verticalPosition: 'top',
-                panelClass: ['green-snackbar']
-              });
+          this.refreshParent();
+        });
+            
+      } else {
 
-              this.refreshParent();
-       })
+        this.userShippingAddress.fullName = this.userShippingAddressForm.get('fullName').value;
+        this.userShippingAddress.address = this.userShippingAddressForm.get('address').value;
+        this.userShippingAddress.phoneNumber = this.userShippingAddressForm.get('phoneNumber').value;
+        this.userShippingAddress.city = this.userShippingAddressForm.get('city').value;
+        this.userShippingAddress.state = this.userShippingAddressForm.get('state').value;
+        this.userShippingAddress.zipCode = this.userShippingAddressForm.get('zipCode').value;
+        this.userShippingAddress.default = this.isDefaultChecked;
+ 
+ 
+        this.userShippingAddressService.saveAddressForAUser(this.getLoggedInUsername(), this.userShippingAddress).subscribe(() => {
+          
+               this.onClose();
+ 
+               this.snackBar.open("Address saved", 'X', {
+                 duration: 5000,
+                 verticalPosition: 'top',
+                 panelClass: ['green-snackbar']
+               });
+ 
+               this.refreshParent();
+        });
+          
+      }
+       
+      
 
   }
 
