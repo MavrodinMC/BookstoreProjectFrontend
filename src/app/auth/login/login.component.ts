@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
   loginRequestPayload: LoginRequestPayload;
   isError: boolean = false;
+  hidePassword: boolean = true;
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     
