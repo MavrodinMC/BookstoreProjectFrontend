@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerRequestPayload: RegisterRequestPayload;
   registerForm: FormGroup | any;
+  hidePassword: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) {
     this.registerRequestPayload = {
