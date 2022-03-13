@@ -1,7 +1,18 @@
 # AngularBookstoreProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+This repository deals with the frontend side of things in terms of user-side functionalities. Admin-side functionalities will be addressed in a separate project/repository.
 
+# Short Description 
+
+I have developed this project using Angular, along with TypeScript, HTML and CSS. I am also using Angular Material library and Visual Studio Code.
+
+# Functionalities and structure 
+
+The project is structured in folders - each folder having an unique purpose.
+
+The user can: register, login, retrieve his lost password, update his personal details and update his shipping addresses.
+ 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
